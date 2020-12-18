@@ -13,8 +13,18 @@ function formatUrlParams(params) {
 }
 
 
-
-
+function showCampList(responseJson) {
+    $('.list').empty();
+    for (i = 0; i < responseJson.data.length; i++) {
+        $('.list').append(
+            `<li><h3>${responseJson.data[i].fullName}</h3>
+            <p>${responseJson.data[i].description}</p>
+            <p>${responseJson.data[i].url}</p>
+            </li>`
+          )};  
+        $('.results-container').show();
+    }
+   
 
 
 
@@ -36,8 +46,8 @@ function formatUrlParams(params) {
 function retrieveList(){
     const params = {
         api_key : apiKey,
-        parkCode: document.getElementById('state').value,
-        
+        stateCode: document.getElementById('state').value,
+        limit: document.getElementById('amount').value,
     };
     
     const queryString = formatUrlParams(params);
@@ -45,7 +55,7 @@ function retrieveList(){
         fetch(url)
             .then(response => {
                 if (response.ok) {
-                    response.json();
+                    return response.json();
                 }
                     throw new Error(response.status);
             
@@ -53,10 +63,11 @@ function retrieveList(){
             .then(responseJson => showCampList(responseJson))
             .catch(err => {
                 $('.error-message').show();
-                })
+                });
+    console.log('retrieveList ran');
 
  
-
+    
 };
 
 
