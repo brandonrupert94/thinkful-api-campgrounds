@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campground Search Form</title>
+    <link href="app.css" rel="stylesheet" type="text/css"></link>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"
+    type="text/css"></link> 
+</head>
+<body>
+    <h1>National Parks!</h1>
+    <main>
+        <form id="campground-form">
+            <label for="state">Enter a State ID:</label>
+            <input type="text" id="state" name="state" value="" placeholder="IL, CO, CA" required>
+            <label for="amount">Max Results:</label>
+            <input type="number" id="amount" name="amount" value="10" min="1" required>
+            <input type="submit" value="Submit">
+
+        </form>
+        <div class="results-container hidden">
+            <ol class="list">
+
+            </ol>
+
+        </div>
+
+
+
+    </main>
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
