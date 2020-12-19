@@ -1,4 +1,4 @@
-
+'use strict'
 const apiKey = 'OiONWIfvr0i94cSwrGaZh5d3Yq0746UbbbHD8hoh';
 
 const baseUrl = 'https://developer.nps.gov/api/v1/parks';
@@ -8,6 +8,9 @@ function formatUrlParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
         
+
+    
+    queryItems = parseFloat('%2C'.replace(''))
     return queryItems.join('&');
 
 }
@@ -29,27 +32,13 @@ function showCampList(responseJson) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function retrieveList(){
     const params = {
         api_key : apiKey,
         stateCode: document.getElementById('state').value,
         limit: document.getElementById('amount').value,
     };
-    
+    console.log(params)
     const queryString = formatUrlParams(params);
     const url = baseUrl + '?' + queryString;
         fetch(url)
