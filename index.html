@@ -13,9 +13,9 @@
     <main>
         <form id="campground-form">
             <label for="state">Enter a State ID:</label>
-            <input type="text" id="state" name="state" value="" placeholder="IL, CO, CA" required>
+            <input type="text" id="state" name="input[]" value="" placeholder="IL, CO, CA" required>
             <label for="amount">Max Results:</label>
-            <input type="number" id="amount" name="amount" value="10" min="1" required>
+            <input type="number" id="amount" name="amount" value="10" min="1" max="50" required>
             <input type="submit" value="Submit">
 
         </form>
