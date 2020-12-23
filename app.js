@@ -6,7 +6,7 @@ const baseUrl = 'https://developer.nps.gov/api/v1/parks?';
 
 function formatUrlParams(params) {
     const queryItems = Object.keys(params)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
+    .map(key => `${encodeURI(key)}=${encodeURI(params[key])}`);
     console.log(queryItems);
     console.log(queryItems.join('&'));
     return queryItems.join('&');
@@ -32,10 +32,10 @@ function showCampList(responseJson) {
 
 
 
-function retrieveList(item, limit){
+function retrieveList(state, limit){
     const params = {
         api_key : apiKey,
-        stateCode: item,
+        stateCode: state,
         limit: limit,
     };
 
@@ -65,14 +65,10 @@ function getCampListings(){
     $('main').submit(event => {
         event.preventDefault();
         $('.list').empty();
-        const state = $('#state').val();       
-        const newState=  state.replace(",","");
-        let stateArray= newState.split(" ");
-        let limit = $('#amount').val();
-        for (let i = 0; i < stateArray.length; i++){
-            let item = stateArray[i];
-            retrieveList(item, limit);
-        };
+        const state = $('#state').val().replace(/\s/g, "");
+               
+        const limit = $('#amount').val();
+       retrieveList(state, limit);
        
     })
 };
